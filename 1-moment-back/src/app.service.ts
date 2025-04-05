@@ -99,6 +99,25 @@ export class AppService {
     }
   }
 
+  public async getUserMoments(body: { fid: string }) {
+    try {
+      const moments = await this.momentRepo.find({
+        where: { fid: body.fid, status: MomentStatus.Active },
+      });
+
+      return {
+        success: true,
+        data: moments,
+      };
+    } catch (error) {
+      console.error('Error gen moments:', error);
+      return {
+        success: false,
+        error: 'Error get moments',
+      };
+    }
+  }
+
   public async updateMoment(body: { status: MomentStatus; momentId: string }) {
     try {
       const moment = await this.momentRepo.findOne({
