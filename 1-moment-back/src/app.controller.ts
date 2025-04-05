@@ -2,6 +2,7 @@ import {
   Body,
   Controller,
   FileTypeValidator,
+  Get,
   ParseFilePipe,
   Post,
   UploadedFile,
@@ -27,5 +28,13 @@ export class AppController {
   ) {
     console.log('Sending warning image');
     return this.appService.saveImage(file, JSON.stringify(body));
+  }
+
+  @Get('test')
+  public test() {
+    return {
+      success: true,
+      message: 'Test successful',
+    };
   }
 }
