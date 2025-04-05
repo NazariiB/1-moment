@@ -1,3 +1,4 @@
 export enum MomentStatus {
-  Pending = 'pending',
+  Active = 'active',
+  Claimed = 'claimed',
 }

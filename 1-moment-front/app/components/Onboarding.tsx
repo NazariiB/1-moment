@@ -33,55 +33,54 @@ const onboardingSteps: OnboardingStep[] = [
   },
 ];
 
-// Animation variants
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      when: "beforeChildren",
-      //   staggerChildren: 0.2,
-      duration: 0.3,
-    },
-  },
-  exit: {
-    opacity: 0,
-    transition: { duration: 0.15 },
-  },
-};
-
-const itemVariants = {
-  hidden: { y: 20, opacity: 0 },
-  visible: {
-    y: 0,
-    opacity: 1,
-    transition: { duration: 0.15 },
-  },
-};
-
-const illustrationVariants = {
-  hidden: { scale: 0.8, opacity: 0 },
-  visible: {
-    scale: 1,
-    opacity: 1,
-    transition: {
-      type: "spring",
-      stiffness: 100,
-      damping: 15,
-    },
-  },
-};
-
-const buttonVariants = {
-  initial: { scale: 1 },
-  hover: {
-    scale: 1.05,
-    backgroundColor: "#071FC0",
-    color: "#ffffff",
-    transition: { duration: 0.2 },
-  },
-  tap: { scale: 0.98 },
-};
+// Anima// const containerVariants = {
+// //   hidden: { opacity: 0 },
+// //   visible: {
+// //     opacity: 1,
+// //     transition: {
+// //       when: "beforeChildren",
+// //       //   staggerChildren: 0.2,
+// //       duration: 0.3,
+// //     },
+// //   },
+// //   exit: {
+// //     opacity: 0,
+// //     transition: { duration: 0.15 },
+// //   },
+// // };
+// //
+// // const itemVariants = {
+// //   hidden: { y: 20, opacity: 0 },
+// //   visible: {
+// //     y: 0,
+// //     opacity: 1,
+// //     transition: { duration: 0.15 },
+// //   },
+// // };
+// //
+// // const illustrationVariants = {
+// //   hidden: { scale: 0.8, opacity: 0 },
+// //   visible: {
+// //     scale: 1,
+// //     opacity: 1,
+// //     transition: {
+// //       type: "spring",
+// //       stiffness: 100,
+// //       damping: 15,
+// //     },
+// //   },
+// // };
+// //
+// // const buttonVariants = {
+// //   initial: { scale: 1 },
+// //   hover: {
+// //     scale: 1.05,
+// //     backgroundColor: "#071FC0",
+// //     color: "#ffffff",
+// //     transition: { duration: 0.2 },
+// //   },
+// //   tap: { scale: 0.98 },
+// // };tion variants
 
 const Onboarding: React.FC<OnboardingProps> = ({ onComplete }) => {
   const [currentStep, setCurrentStep] = useState(0);
