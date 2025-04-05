@@ -7,7 +7,8 @@ import {
 } from "@coinbase/onchainkit/minikit";
 import { Name, Identity, Badge } from "@coinbase/onchainkit/identity";
 import { useCallback, useEffect, useMemo, useState } from "react";
-import Snake from "./components/snake";
+import StampCreator from "./components/StampCreator";
+import Onboarding from "./components/Onboarding";
 import { useAccount } from "wagmi";
 import Check from "./svg/Check";
 
@@ -17,6 +18,7 @@ const SCHEMA_UID =
 export default function App() {
   const { setFrameReady, isFrameReady, context } = useMiniKit();
   const [frameAdded, setFrameAdded] = useState(false);
+  const [showOnboarding, setShowOnboarding] = useState(true);
 
   const addFrame = useAddFrame();
   const openUrl = useOpenUrl();
@@ -58,47 +60,62 @@ export default function App() {
     return null;
   }, [context, handleAddFrame, frameAdded]);
 
+  const handleOnboardingComplete = () => {
+    setShowOnboarding(false);
+  };
+
+  const handleRestartOnboarding = () => {
+    setShowOnboarding(true);
+  };
+
   return (
-    <div className="flex flex-col min-h-screen sm:min-h-[820px] font-sans bg-[#E5E5E5] text-black items-center snake-dark relative">
-      <div className="w-screen max-w-[520px]">
-        <header className="mr-2 mt-1 flex justify-between">
-          <div className="justify-start pl-1">
-            {address ? (
-              <Identity
-                address={address}
-                schemaId={SCHEMA_UID}
-                className="!bg-inherit p-0 [&>div]:space-x-2"
-              >
-                <Name className="text-inherit">
-                  <Badge
-                    tooltip="High Scorer"
-                    className="!bg-inherit high-score-badge"
-                  />
-                </Name>
-              </Identity>
-            ) : (
-              <div className="pl-2 pt-1 text-gray-500 text-sm font-semibold">
-                NOT CONNECTED
-              </div>
-            )}
-          </div>
-          <div className="pr-1 justify-end">{saveFrameButton}</div>
-        </header>
+    <>
+      {showOnboarding && <Onboarding onComplete={handleOnboardingComplete} />}
+      <div className="flex flex-col min-h-screen sm:min-h-[820px] font-sans bg-[#F4EEDE] text-black items-center relative">
+        <div className="w-screen max-w-[520px]">
+          <header className="mr-2 mt-1 flex justify-between">
+            <div className="justify-start pl-1">
+              {address ? (
+                <Identity
+                  address={address}
+                  schemaId={SCHEMA_UID}
+                  className="!bg-inherit p-0 [&>div]:space-x-2"
+                >
+                  <Name className="text-inherit">
+                    <Badge tooltip="Stamp Creator" className="!bg-inherit" />
+                  </Name>
+                </Identity>
+              ) : (
+                <div className="pl-2 pt-1 text-gray-500 text-sm font-semibold">
+                  NOT CONNECTED
+                </div>
+              )}
+            </div>
+            <div className="pr-1 justify-end">{saveFrameButton}</div>
+          </header>
 
-        <main className="font-serif">
-          <Snake />
-        </main>
+          <main className="mt-4">
+            <StampCreator />
+          </main>
 
-        <footer className="absolute bottom-4 flex items-center w-screen max-w-[520px] justify-center">
-          <button
-            type="button"
-            className="mt-4 ml-4 px-2 py-1 flex justify-start rounded-2xl font-semibold opacity-40 border border-black text-xs"
-            onClick={() => openUrl("https://base.org/builders/minikit")}
-          >
-            BUILT ON BASE WITH MINIKIT
-          </button>
-        </footer>
+          <footer className="absolute bottom-4 flex items-center w-screen max-w-[520px] justify-between px-4">
+            <button
+              type="button"
+              className="px-2 py-1 flex justify-start rounded-2xl font-semibold opacity-60 border border-[#071FC0] text-[#071FC0] text-xs font-schoolbell"
+              onClick={handleRestartOnboarding}
+            >
+              SHOW INTRO
+            </button>
+            <button
+              type="button"
+              className="px-2 py-1 flex justify-start rounded-2xl font-semibold opacity-40 border border-black text-xs"
+              onClick={() => openUrl("https://base.org/builders/minikit")}
+            >
+              BUILT ON BASE WITH MINIKIT
+            </button>
+          </footer>
+        </div>
       </div>
-    </div>
+    </>
   );
 }

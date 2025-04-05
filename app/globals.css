@@ -3,8 +3,10 @@
 @tailwind utilities;
 
 :root {
-  --background: #e5e5e5;
-  --foreground: #171717;
+  --foreground-rgb: 0, 0, 0;
+  --background-rgb: 229, 229, 229;
+  --foreground: rgb(var(--foreground-rgb));
+  --background: rgb(var(--background-rgb));
 }
 
 @media (prefers-color-scheme: dark) {
@@ -18,14 +20,48 @@
   touch-action: manipulation;
 }
 
+.font-schoolbell {
+  font-family: "Schoolbell", cursive !important;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.schoolbell-regular {
+  font-family: "Schoolbell", cursive;
+  font-weight: 400;
+  font-style: normal;
+}
+
 body {
   color: var(--foreground);
   background: var(--background);
+  width: 100%;
+  min-height: 100vh;
+  margin: 0;
 
   font-family: "Pixelify Sans", sans-serif;
   font-optical-sizing: auto;
   font-weight: 400;
   font-style: normal;
+}
+
+.high-score-badge {
+  margin-bottom: -2px;
+  position: relative;
+  z-index: 2;
+}
+
+.high-score-badge:after {
+  content: "🏆";
+  z-index: 1;
+  position: relative;
+  top: -1px;
+  left: 0px;
+}
+
+.snake-dark .high-score-badge:after {
+  content: "🏆";
+  filter: invert(1);
 }
 
 .high-score-badge + div {

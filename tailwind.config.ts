@@ -10,10 +10,21 @@ const config: Config = {
     extend: {
       fontFamily: {
         serif: ["Pixelify Sans", "serif"],
+        schoolbell: ['"Schoolbell"', "cursive"],
+      },
+      fontSize: {
+        "2xl": ["28px", "140%"],
       },
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
+        primary: {
+          blue: "#071FC0",
+        },
+        secondary: {
+          beige: "#F4EEDE",
+          gray: "#979380",
+        },
       },
       backgroundImage: {
         "dpad-gradient":
