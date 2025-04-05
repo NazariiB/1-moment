@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useState, useEffect, useRef } from "react";
-import Image from "next/image";
 import Link from "next/link";
 import { useParams } from "next/navigation";
 import MomentCard from "../../components/MomentCard";
@@ -51,7 +50,7 @@ export default function UserProfile() {
     },
   ];
 
-  const christopherMoments: any[] = [];
+  const christopherMoments: never[] = [];
 
   // Check if the current user has already created a moment for this profile
   useEffect(() => {

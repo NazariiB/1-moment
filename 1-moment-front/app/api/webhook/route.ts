@@ -1,7 +1,4 @@
-import {
-  setUserNotificationDetails,
-  deleteUserNotificationDetails,
-} from "@/lib/notification";
+
 import { sendFrameNotification } from "@/lib/notification-client";
 import { http } from "viem";
 import { createPublicClient } from "viem";
@@ -84,7 +81,7 @@ export async function POST(request: Request) {
           "event.notificationDetails",
           event.notificationDetails,
         );
-        await setUserNotificationDetails(fid, event.notificationDetails);
+        //await setUserNotificationDetails(fid, event.notificationDetails);
         await sendFrameNotification({
           fid,
           title: `Welcome to ${appName}`,
@@ -96,18 +93,18 @@ export async function POST(request: Request) {
           "event.notificationDetails",
           event.notificationDetails,
         );
-        await deleteUserNotificationDetails(fid);
+        //await deleteUserNotificationDetails(fid);
       }
 
       break;
     case "frame_removed": {
       console.log("frame_removed");
-      await deleteUserNotificationDetails(fid);
+      //await deleteUserNotificationDetails(fid);
       break;
     }
     case "notifications_enabled": {
       console.log("notifications_enabled", event.notificationDetails);
-      await setUserNotificationDetails(fid, event.notificationDetails);
+      //await setUserNotificationDetails(fid, event.notificationDetails);
       await sendFrameNotification({
         fid,
         title: `Welcome to ${appName}`,
@@ -118,7 +115,7 @@ export async function POST(request: Request) {
     }
     case "notifications_disabled": {
       console.log("notifications_disabled");
-      await deleteUserNotificationDetails(fid);
+      //await deleteUserNotificationDetails(fid);
 
       break;
     }

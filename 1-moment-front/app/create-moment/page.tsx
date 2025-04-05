@@ -2,14 +2,14 @@
 
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
-import { useSearchParams, useRouter } from "next/navigation";
+import {  useRouter } from "next/navigation";
 import EditableMomentCard from "../components/EditableMomentCard";
 import SuccessScreen from "../components/SuccessScreen";
 
 export default function CreateMoment() {
-  const searchParams = useSearchParams();
+ // const searchParams = useSearchParams();
   const router = useRouter();
-  const recipientHandle = searchParams.get("recipient") || "@christopher";
+  const recipientHandle ="@christopher";
 
   // State for the moment content
   const [momentText, setMomentText] = useState("");

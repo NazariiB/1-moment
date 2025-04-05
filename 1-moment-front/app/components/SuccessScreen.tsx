@@ -12,7 +12,6 @@ interface SuccessScreenProps {
 const SuccessScreen: React.FC<SuccessScreenProps> = ({
   recipientHandle,
   price,
-  onCreateAnother,
 }) => {
   useEffect(() => {
     // Simple animation function to create confetti effect
