@@ -1,4 +1,4 @@
-// File: /Users/anatoliikolomiiets/Documents/2_explore/6_Farcaster-Coding/1moment/1-moment/1-moment-front/app/layout.tsx
+// File: /Users/andrii/Desktop/hackaton/farcaster/1-moment/1-moment-front/app/layout.tsx
 import * as entry from '../../../app/layout.js'
 import type { ResolvingMetadata, ResolvingViewport } from 'next/dist/lib/metadata/types/metadata-interface.js'
 
