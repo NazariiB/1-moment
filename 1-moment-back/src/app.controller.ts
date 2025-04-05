@@ -31,6 +31,16 @@ export class AppController {
     return this.appService.saveImage(file, JSON.stringify(body));
   }
 
+  @Get('moments')
+  public getMoments(
+    @Body()
+    body: {
+      fid: string;
+    },
+  ) {
+    return this.appService.getUserMoments(body);
+  }
+
   @Post('moment')
   public createMoment(
     @Body()
