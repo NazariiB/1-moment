@@ -20,10 +20,10 @@ export default function Feed() {
       receivedAmount: "$240",
     },
     {
-      handle: "@ted",
-      subscribersAmount: "360k",
+      handle: "@Aloha",
+      subscribersAmount: "22k",
       momentsAmount: 7,
-      receivedAmount: "$240",
+      receivedAmount: "$140",
     },
     {
       handle: "@ted",
