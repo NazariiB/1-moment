@@ -15,7 +15,7 @@ const UserItem: React.FC<UserItemProps> = ({
   subscribersAmount,
   momentsAmount,
   receivedAmount,
-}) => {
+}: UserItemProps) => {
   const router = useRouter();
 
   const handleClick = () => {
