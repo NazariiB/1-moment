@@ -3,6 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { MomentEntity } from 'db/entity/moment.entity';
 import { PinataSDK } from 'pinata';
 import { Repository } from 'typeorm';
+import { MomentStatus } from './enum/momentStatus';
 
 @Injectable()
 export class AppService {
@@ -67,6 +68,58 @@ export class AppService {
       return {
         success: false,
         error: 'Error saving image',
+      };
+    }
+  }
+
+  public async createMoment(body: {
+    fid: string;
+    name: string;
+    status: MomentStatus;
+    momentId: string;
+  }) {
+    try {
+      const moment = this.momentRepo.create({
+        fid: body.fid,
+        momentId: body.momentId,
+        name: body.name,
+        status: body.status,
+      });
+      const savedMoment = await this.momentRepo.save(moment);
+      return {
+        success: true,
+        data: savedMoment,
+      };
+    } catch (error) {
+      console.error('Error creating moment:', error);
+      return {
+        success: false,
+        error: 'Error creating moment',
+      };
+    }
+  }
+
+  public async updateMoment(body: { status: MomentStatus; momentId: string }) {
+    try {
+      const moment = await this.momentRepo.findOne({
+        where: { momentId: body.momentId },
+      });
+
+      if (!moment) {
+        return {
+          success: false,
+          error: 'Moment not found',
+        };
+      }
+      await this.momentRepo.update(moment.id, { status: body.status });
+      return {
+        success: true,
+      };
+    } catch (error) {
+      console.error('Error creating moment:', error);
+      return {
+        success: false,
+        error: 'Error creating moment',
       };
     }
   }
