@@ -2,7 +2,6 @@ import {
   type SendNotificationRequest,
   sendNotificationResponseSchema,
 } from "@farcaster/frame-sdk";
-import { getUserNotificationDetails } from "@/lib/notification";
 
 const appUrl = process.env.NEXT_PUBLIC_URL || "";
 
@@ -16,7 +15,6 @@ type SendFrameNotificationResult =
   | { state: "success" };
 
 export async function sendFrameNotification({
-  fid,
   title,
   body,
 }: {
@@ -24,7 +22,8 @@ export async function sendFrameNotification({
   title: string;
   body: string;
 }): Promise<SendFrameNotificationResult> {
-  const notificationDetails = await getUserNotificationDetails(fid);
+  //const notificationDetails = await getUserNotificationDetails(fid);
+  const notificationDetails = {url: '', token:''};
   if (!notificationDetails) {
     return { state: "no_token" };
   }

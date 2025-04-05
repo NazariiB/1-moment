@@ -5,9 +5,23 @@ import Image from "next/image";
 import TabIcon from "../components/TabIcon";
 
 export default function Inbox() {
+  const handleShowIntro = () => {
+    // Add logic to show intro/onboarding
+    console.log("Show intro clicked");
+    // Navigate to intro or trigger onboarding modal
+  };
+
   return (
     <div className="flex flex-col min-h-screen font-sans bg-[#F4EEDE] text-black">
       <div className="w-screen max-w-[520px] mx-auto">
+        <div className="absolute top-4 right-4 sm:right-auto sm:ml-[460px]">
+          <button
+            onClick={handleShowIntro}
+            className="bg-primary-blue text-white rounded-full px-4 py-2 text-sm font-medium shadow-sm hover:bg-blue-700 transition-colors"
+          >
+            Show Intro
+          </button>
+        </div>
         <main className="px-4 pt-6 pb-20">
           <h1 className="text-primary-blue text-2xl font-schoolbell text-center mb-6">
             Your Inbox
