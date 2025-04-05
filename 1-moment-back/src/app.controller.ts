@@ -5,11 +5,13 @@ import {
   Get,
   ParseFilePipe,
   Post,
+  Put,
   UploadedFile,
   UseInterceptors,
 } from '@nestjs/common';
 import { AppService } from './app.service';
 import { FileInterceptor } from '@nestjs/platform-express';
+import { MomentStatus } from './enum/momentStatus';
 
 @Controller()
 export class AppController {
@@ -26,8 +28,31 @@ export class AppController {
     )
     file: Express.Multer.File,
   ) {
-    console.log('Sending warning image');
     return this.appService.saveImage(file, JSON.stringify(body));
+  }
+
+  @Post('moment')
+  public createMoment(
+    @Body()
+    body: {
+      fid: string;
+      name: string;
+      status: MomentStatus;
+      momentId: string;
+    },
+  ) {
+    return this.appService.createMoment(body);
+  }
+
+  @Put('moment')
+  public updateMoment(
+    @Body()
+    body: {
+      status: MomentStatus;
+      momentId: string;
+    },
+  ) {
+    return this.appService.updateMoment(body);
   }
 
   @Get('test')
