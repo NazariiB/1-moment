@@ -1,5 +1,6 @@
 "use client";
 
+import React from "react";
 import {
   useMiniKit,
   useAddFrame,
@@ -95,6 +96,9 @@ export default function App() {
           </header>
 
           <main className="mt-4">
+            <h1 className="text-primary-blue text-2xl font-schoolbell text-center mb-6">
+              Lets create your special NFT stamp
+            </h1>
             <StampCreator />
           </main>
 

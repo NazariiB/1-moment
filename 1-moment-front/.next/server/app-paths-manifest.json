@@ -1,0 +1,4 @@
+{
+  "/feed/page": "app/feed/page.js",
+  "/inbox/page": "app/inbox/page.js"
+}

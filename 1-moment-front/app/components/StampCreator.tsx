@@ -3,6 +3,7 @@
 import React, { useRef, useState } from "react";
 import { ReactSketchCanvas, ReactSketchCanvasRef } from "react-sketch-canvas";
 import Button from "./Button";
+import { useRouter } from "next/navigation";
 
 type StampCreatorProps = {
   backgroundColor?: string;
@@ -19,7 +20,9 @@ const StampCreator: React.FC<StampCreatorProps> = ({
   const [isDrawingMode, setIsDrawingMode] = useState(true);
   const [stampImage, setStampImage] = useState<string | null>(null);
   const [isCanvasEmpty, setIsCanvasEmpty] = useState(true);
+  const [isMinting, setIsMinting] = useState(false);
   const canvasRef = useRef<ReactSketchCanvasRef>(null);
+  const router = useRouter();
 
   const handleClearCanvas = () => {
     if (canvasRef.current) {
@@ -61,9 +64,30 @@ const StampCreator: React.FC<StampCreatorProps> = ({
     }
   };
 
+  const handleMintNFT = async () => {
+    try {
+      setIsMinting(true);
+      // Here you would implement the logic for minting the NFT
+
+      // Simulate a successful mint with a delay
+      await new Promise((resolve) => setTimeout(resolve, 1500));
+
+      // Navigate to the feed page after successful minting
+      router.push("/feed");
+    } catch (error) {
+      console.error("Error minting NFT:", error);
+    } finally {
+      setIsMinting(false);
+    }
+  };
+
   const handleReset = () => {
     setIsDrawingMode(true);
+    setStampImage(null);
     setIsCanvasEmpty(true);
+    if (canvasRef.current) {
+      canvasRef.current.clearCanvas();
+    }
   };
 
   const handleCanvasChange = () => {
@@ -88,8 +112,24 @@ const StampCreator: React.FC<StampCreatorProps> = ({
           />
         </div>
 
-        <div className="flex mt-4">
-          <Button onClick={handleReset}>Reset</Button>
+        <p className="text-gray-600 text-center mt-4 text-sm">
+          Each moment that you will create for someone will be signed with it
+        </p>
+
+        <div className="flex mt-4 gap-3 w-full justify-center">
+          <Button
+            onClick={handleReset}
+            className="bg-transparent text-primary-blue border-primary-blue hover:bg-gray-100"
+          >
+            Reset
+          </Button>
+          <Button
+            onClick={handleMintNFT}
+            disabled={isMinting}
+            className="text-lg font-bold"
+          >
+            {isMinting ? "Minting..." : "Mint NFT"}
+          </Button>
         </div>
       </div>
     );
@@ -111,29 +151,32 @@ const StampCreator: React.FC<StampCreatorProps> = ({
           style={{ width: "100%", height: "100%" }}
           onChange={handleCanvasChange}
         />
+        {isCanvasEmpty && (
+          <div className="absolute inset-0 flex items-center justify-center text-gray-400 pointer-events-none font-schoolbell">
+            just draw something here :)
+          </div>
+        )}
       </div>
 
       {/* Action buttons */}
       <div className="flex flex-wrap mt-4 gap-2 sm:gap-3 justify-center w-full">
         <button
           onClick={handleClearCanvas}
-          className="px-3 sm:px-4 py-2 text-sm sm:text-base bg-gray-200 rounded-lg hover:bg-gray-300 transition-colors font-schoolbell"
+          className="px-3 sm:px-4 py-2 text-sm sm:text-base bg-gray-200 rounded-lg hover:bg-gray-300 transition-colors font-schoolbell text-red-600"
         >
           Clear
         </button>
         <button
           onClick={handleUndoAction}
-          className="px-3 sm:px-4 py-2 text-sm sm:text-base bg-gray-200 rounded-lg hover:bg-gray-300 transition-colors font-schoolbell"
+          className="px-3 sm:px-4 py-2 text-sm sm:text-base bg-gray-200 rounded-lg hover:bg-gray-300 transition-colors font-schoolbell text-primary-blue"
         >
           Undo
         </button>
-        <button
-          onClick={handleRedoAction}
-          className="px-3 sm:px-4 py-2 text-sm sm:text-base bg-gray-200 rounded-lg hover:bg-gray-300 transition-colors font-schoolbell"
+        <Button
+          onClick={handleDone}
+          disabled={isExporting || isCanvasEmpty}
+          className="text-lg"
         >
-          Redo
-        </button>
-        <Button onClick={handleDone} disabled={isExporting} className="text-lg">
           {isExporting ? "Processing..." : "Done"}
         </Button>
       </div>
