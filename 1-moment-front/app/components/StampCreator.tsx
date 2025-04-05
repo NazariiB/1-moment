@@ -40,14 +40,14 @@ const StampCreator: React.FC<StampCreatorProps> = ({
     }
   };
 
-  const handleRedoAction = () => {
-    if (canvasRef.current) {
-      canvasRef.current.redo();
-      canvasRef.current.exportPaths().then((paths) => {
-        setIsCanvasEmpty(paths.length === 0);
-      });
-    }
-  };
+  // const handleRedoAction = () => {
+  //   if (canvasRef.current) {
+  //     canvasRef.current.redo();
+  //     canvasRef.current.exportPaths().then((paths) => {
+  //       setIsCanvasEmpty(paths.length === 0);
+  //     });
+  //   }
+  // };
 
   const handleDone = async () => {
     try {
