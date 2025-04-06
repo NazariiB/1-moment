@@ -72,7 +72,7 @@ export default function App() {
   return (
     <>
       {showOnboarding && <Onboarding onComplete={handleOnboardingComplete} />}
-      <div className="flex flex-col min-h-screen sm:min-h-[820px] font-sans bg-[#F4EEDE] text-black items-center relative">
+      <div className="flex flex-col min-h-screen font-sans bg-[#F4EEDE] text-black items-center relative">
         <div className="w-screen max-w-[520px]">
           <header className="mr-2 mt-1 flex justify-between">
             <div className="justify-start pl-1">
@@ -96,26 +96,16 @@ export default function App() {
           </header>
 
           <main className="mt-4">
-            <h1 className="text-primary-blue text-2xl font-schoolbell text-center mb-6">
-              Lets create your special NFT stamp
-            </h1>
             <StampCreator />
           </main>
 
-          <footer className="absolute bottom-4 flex items-center w-screen max-w-[520px] justify-between px-4">
+          <footer className="absolute bottom-24 flex items-center w-screen max-w-[520px] justify-between px-4">
             <button
               type="button"
               className="px-2 py-1 flex justify-start rounded-2xl font-semibold opacity-60 border border-[#071FC0] text-[#071FC0] text-xs font-schoolbell"
               onClick={handleRestartOnboarding}
             >
               SHOW INTRO
-            </button>
-            <button
-              type="button"
-              className="px-2 py-1 flex justify-start rounded-2xl font-semibold opacity-40 border border-black text-xs"
-              onClick={() => openUrl("https://base.org/builders/minikit")}
-            >
-              BUILT ON BASE WITH MINIKIT
             </button>
           </footer>
         </div>
