@@ -4,6 +4,7 @@ import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import Button from "./Button";
 import { motion, AnimatePresence } from "framer-motion";
+import HandDrawnButton from "./HandDrawnButton";
 
 type OnboardingStep = {
   description: string;
@@ -22,65 +23,16 @@ const onboardingSteps: OnboardingStep[] = [
     illustration: "/1-screen.svg",
   },
   {
-    description: "wtf is that!?",
-    subtext: "1. Find someone with who you want to share yours moment",
+    description: "who ???",
+    subtext: "2. Find someone with who you want to share yours moment",
     illustration: "/2-screen.svg",
   },
   {
-    description: "wtf is that!?",
-    subtext: "1. Create your moment, and sign with your NFT",
+    description: "Who will pay for it?!",
+    subtext: "3. Create your moment, and sign with your NFT",
     illustration: "/3-screen.svg",
   },
 ];
-
-// Anima// const containerVariants = {
-// //   hidden: { opacity: 0 },
-// //   visible: {
-// //     opacity: 1,
-// //     transition: {
-// //       when: "beforeChildren",
-// //       //   staggerChildren: 0.2,
-// //       duration: 0.3,
-// //     },
-// //   },
-// //   exit: {
-// //     opacity: 0,
-// //     transition: { duration: 0.15 },
-// //   },
-// // };
-// //
-// // const itemVariants = {
-// //   hidden: { y: 20, opacity: 0 },
-// //   visible: {
-// //     y: 0,
-// //     opacity: 1,
-// //     transition: { duration: 0.15 },
-// //   },
-// // };
-// //
-// // const illustrationVariants = {
-// //   hidden: { scale: 0.8, opacity: 0 },
-// //   visible: {
-// //     scale: 1,
-// //     opacity: 1,
-// //     transition: {
-// //       type: "spring",
-// //       stiffness: 100,
-// //       damping: 15,
-// //     },
-// //   },
-// // };
-// //
-// // const buttonVariants = {
-// //   initial: { scale: 1 },
-// //   hover: {
-// //     scale: 1.05,
-// //     backgroundColor: "#071FC0",
-// //     color: "#ffffff",
-// //     transition: { duration: 0.2 },
-// //   },
-// //   tap: { scale: 0.98 },
-// // };tion variants
 
 const Onboarding: React.FC<OnboardingProps> = ({ onComplete }) => {
   const [currentStep, setCurrentStep] = useState(0);
@@ -115,7 +67,7 @@ const Onboarding: React.FC<OnboardingProps> = ({ onComplete }) => {
     >
       {/* Header - only animate on initial appearance */}
       <motion.header
-        className="w-full max-w-md pt-4"
+        className="w-full max-w-md pt-2"
         initial={!initialAnimationComplete ? { y: -20, opacity: 0 } : false}
         animate={
           !initialAnimationComplete ? { y: 0, opacity: 1 } : { opacity: 1 }
@@ -124,7 +76,7 @@ const Onboarding: React.FC<OnboardingProps> = ({ onComplete }) => {
       >
         <div className="flex flex-col items-center">
           <motion.div
-            className="rounded-md p-2 mb-2"
+            className="rounded-md p-2 "
             initial={!initialAnimationComplete ? { y: -50, opacity: 0 } : false}
             animate={
               !initialAnimationComplete ? { y: 0, opacity: 1 } : { opacity: 1 }
@@ -134,7 +86,7 @@ const Onboarding: React.FC<OnboardingProps> = ({ onComplete }) => {
             <Image src="/Logo.svg" alt="1moment" width={235} height={60} />
           </motion.div>
           <motion.div
-            className="text-[#979380] text-2xl font-schoolbell"
+            className="text-[#979380] text-xl font-schoolbell"
             initial={!initialAnimationComplete ? { opacity: 0 } : false}
             animate={{ opacity: 1 }}
           >
@@ -210,13 +162,15 @@ const Onboarding: React.FC<OnboardingProps> = ({ onComplete }) => {
       </AnimatePresence>
 
       {/* Footer - button always animates */}
-      <motion.footer className="w-full max-w-md pb-4">
-        <Button
+      <motion.footer className="w-full max-w-md  flex justify-center items-center">
+        <HandDrawnButton
+          variant="primary"
           onClick={handleNext}
-          className="w-full py-3 text-xl font-schoolbell"
+          size="lg"
+          className="py-3 w-full font-schoolbell"
         >
           Next
-        </Button>
+        </HandDrawnButton>
       </motion.footer>
     </motion.div>
   );
