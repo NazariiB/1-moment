@@ -6,6 +6,10 @@ import Button from "./Button";
 import { useRouter } from "next/navigation";
 import HandDrawnButton from "./HandDrawnButton";
 import { motion, AnimatePresence } from "framer-motion";
+import { getAccount, writeContract } from '@wagmi/core'
+import { callConfig } from "../contract/callConfig";
+import { oneMomentContract } from "../contract/oneMomentContracts";
+import { base } from "wagmi/chains";
 
 type StampCreatorProps = {
   backgroundColor?: string;
@@ -71,7 +75,25 @@ const StampCreator: React.FC<StampCreatorProps> = ({
   const handleMintNFT = async () => {
     try {
       setIsMinting(true);
+      const { address, status, connector } = getAccount(callConfig)
+      console.log('status', status)
+      console.log('connector', connector)
       // Here you would implement the logic for minting the NFT
+
+      const result = await writeContract(callConfig, {
+        abi: oneMomentContract.oneMomentNFTAbi, 
+        address: oneMomentContract.oneMomentNFTAddress,
+        functionName: 'mintNFT',
+        args: [
+          'https://maroon-eldest-tiger-794.mypinata.cloud/ipfs/bafkreic733cuu5r2r7augjeeqh2jrrl72i62z7sp4y6d6w5stt77p67pya',
+        ],
+        chainId: base.id,
+        connector: {
+          ...connector,
+          connector: connector
+        }as any,
+        account: address,
+      })
 
       // Simulate a successful mint with a delay
       await new Promise((resolve) => setTimeout(resolve, 1500));
