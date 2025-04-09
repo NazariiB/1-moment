@@ -14,42 +14,41 @@ const SuccessScreen: React.FC<SuccessScreenProps> = ({
   price,
 }) => {
   useEffect(() => {
-    // if (typeof document === "undefined" || !document) return;
     // Simple animation function to create confetti effect
-    // const createConfetti = () => {
-    //   const confettiContainer = document.getElementById("confetti-container");
-    //   if (!confettiContainer) return;
+    const createConfetti = () => {
+      const confettiContainer = document.getElementById("confetti-container");
+      if (!confettiContainer) return;
 
-    //   // Create 50 confetti elements
-    //   for (let i = 0; i < 50; i++) {
-    //     const confetti = document.createElement("div");
-    //     confetti.classList.add("confetti");
+      // Create 50 confetti elements
+      for (let i = 0; i < 50; i++) {
+        const confetti = document.createElement("div");
+        confetti.classList.add("confetti");
 
-    //     // Random position, size, color and animation delay
-    //     const left = Math.random() * 100;
-    //     const size = Math.random() * 10 + 5;
-    //     const backgroundColor = `hsl(${Math.random() * 360}, 80%, 60%)`;
-    //     const delay = Math.random() * 3;
+        // Random position, size, color and animation delay
+        const left = Math.random() * 100;
+        const size = Math.random() * 10 + 5;
+        const backgroundColor = `hsl(${Math.random() * 360}, 80%, 60%)`;
+        const delay = Math.random() * 3;
 
-    //     Object.assign(confetti.style, {
-    //       left: `${left}%`,
-    //       width: `${size}px`,
-    //       height: `${size}px`,
-    //       backgroundColor,
-    //       animationDelay: `${delay}s`,
-    //     });
+        Object.assign(confetti.style, {
+          left: `${left}%`,
+          width: `${size}px`,
+          height: `${size}px`,
+          backgroundColor,
+          animationDelay: `${delay}s`,
+        });
 
-    //     confettiContainer.appendChild(confetti);
-    //   }
+        confettiContainer.appendChild(confetti);
+      }
 
-    //   // Remove confetti after animation
-    //   setTimeout(() => {
-    //     const confettiElements = document.querySelectorAll(".confetti");
-    //     confettiElements.forEach((el) => el.remove());
-    //   }, 5000);
-    // };
+      // Remove confetti after animation
+      setTimeout(() => {
+        const confettiElements = document.querySelectorAll(".confetti");
+        confettiElements.forEach((el) => el.remove());
+      }, 5000);
+    };
 
-    // createConfetti();
+    createConfetti();
   }, []);
 
   // Handle share functionality
