@@ -10,6 +10,7 @@ import { getAccount, writeContract } from '@wagmi/core'
 import { callConfig } from "../contract/callConfig";
 import { oneMomentContract } from "../contract/oneMomentContracts";
 import { base } from "wagmi/chains";
+import { useWriteContract } from "wagmi";
 
 type StampCreatorProps = {
   backgroundColor?: string;
@@ -31,7 +32,7 @@ const StampCreator: React.FC<StampCreatorProps> = ({
     useState(false);
   const canvasRef = useRef<ReactSketchCanvasRef>(null);
   const router = useRouter();
-
+  const { writeContract } = useWriteContract()
   // Set initialAnimationComplete to true after first render
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -88,10 +89,7 @@ const StampCreator: React.FC<StampCreatorProps> = ({
           'https://maroon-eldest-tiger-794.mypinata.cloud/ipfs/bafkreic733cuu5r2r7augjeeqh2jrrl72i62z7sp4y6d6w5stt77p67pya',
         ],
         chainId: base.id,
-        connector: {
-          ...connector,
-          connector: connector
-        }as any,
+        connector,
         account: address,
       })
 
