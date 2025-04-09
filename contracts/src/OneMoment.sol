@@ -27,11 +27,6 @@ contract OneMoment is Ownable, IOneMoment {
         });
     }
 
-    function mintNFT(string memory _tokenURI) public payable returns (uint256) {
-        uint256 tokenId = oneMomentNFT.mintNFT(_tokenURI);
-        return tokenId;
-    }
-
     function createMoment(address token, uint256 amount, address receiver) public payable returns (uint256) {
         require(userOwnsNFT(msg.sender), "User must own an NFT");
         SupportedToken memory _token = supportedTokens[token];
