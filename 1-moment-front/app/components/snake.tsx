@@ -752,18 +752,18 @@ const Sammy = () => {
   }, [getStartingScore, setGameState]);
 
   useEffect(() => {
-    const handleResize = () => {
-      setScale(
-        Math.min(
-          window.document.body.clientWidth / 520,
-          window.document.body.clientHeight / 520,
-          1,
-        ),
-      );
-    };
-    handleResize();
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
+    // const handleResize = () => {
+    //   setScale(
+    //     Math.min(
+    //       window.document.body.clientWidth / 520,
+    //       window.document.body.clientHeight / 520,
+    //       1,
+    //     ),
+    //   );
+    // };
+    // handleResize();
+    // window.addEventListener("resize", handleResize);
+    // return () => window.removeEventListener("resize", handleResize);
   }, []);
 
   useEffect(() => {
