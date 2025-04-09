@@ -4,7 +4,12 @@ import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import {  useRouter } from "next/navigation";
 import EditableMomentCard from "../components/EditableMomentCard";
-import SuccessScreen from "../components/SuccessScreen";
+// import SuccessScreen from "../components/SuccessScreen";
+import dynamic from "next/dynamic";
+
+const SuccessScreen = dynamic(() => import("../components/SuccessScreen"), {
+  ssr: false,
+});
 
 export default function CreateMoment() {
  // const searchParams = useSearchParams();

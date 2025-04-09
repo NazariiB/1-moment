@@ -5,7 +5,11 @@ import Image from "next/image";
 import Button from "./Button";
 import { motion, AnimatePresence } from "framer-motion";
 import HandDrawnButton from "./HandDrawnButton";
-import Lottie from "lottie-react";
+// import Lottie from "lottie-react";
+
+import dynamic from "next/dynamic";
+
+const Lottie = dynamic(() => import("lottie-react"), { ssr: false });
 
 type OnboardingStep = {
   // description: string;
