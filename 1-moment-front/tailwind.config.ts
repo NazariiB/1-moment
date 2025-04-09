@@ -12,8 +12,12 @@ const config: Config = {
         serif: ["Pixelify Sans", "serif"],
         schoolbell: ['"Schoolbell"', "cursive"],
       },
+      fontSmoothing: {
+        antialiased: "antialiased",
+      },
       fontSize: {
         "2xl": ["28px", "140%"],
+        mmd: ["18px", "140%"],
       },
       colors: {
         background: "var(--background)",
