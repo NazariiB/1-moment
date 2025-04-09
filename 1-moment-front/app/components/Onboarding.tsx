@@ -55,7 +55,7 @@ const Onboarding: React.FC<OnboardingProps> = ({ onComplete }) => {
   const [currentStep, setCurrentStep] = useState(0);
   const [initialAnimationComplete, setInitialAnimationComplete] =
     useState(false);
-  const [lottieData, setLottieData] = useState<any>(null);
+  const [lottieData, setLottieData] = useState(null);
 
   // Set initialAnimationComplete to true after first render
   useEffect(() => {
@@ -223,7 +223,7 @@ const Onboarding: React.FC<OnboardingProps> = ({ onComplete }) => {
                 transition={{ delay: 0.2 }}
               >
                 Pricing starts at $1,11 and increases with <br />
-                recipient's follower count. Recipients can claim
+                recipient{"'"}s follower count. Recipients can claim
                 <br />
                 your moment as a tip.
               </motion.div>
