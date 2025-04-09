@@ -53,6 +53,9 @@ export default function RootLayout({
           href="https://fonts.googleapis.com/css2?family=Schoolbell&display=swap"
           rel="stylesheet"
         />
+
+      <meta name='fc:frame' content='{"button":{"title":"Launch 1 moment","action":{"type":"launch_frame","splashBackgroundColor":"#fff","url":"https://1-moment-front.vercel.app","name":"1 moment"}},"version":"next","imageUrl":"https://maroon-eldest-tiger-794.mypinata.cloud/ipfs/bafkreif53mwskmxphcxplacxep5ym5xspywhdn4fik4yzozarjbwlh72gy"}' />
+
       </head>
       <body className="bg-background overflow-hidden">
         <Providers>{children}</Providers>
