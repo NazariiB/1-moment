@@ -14,7 +14,7 @@ const SuccessScreen: React.FC<SuccessScreenProps> = ({
   price,
 }) => {
   useEffect(() => {
-    if (typeof document === "undefined" || !document) return;
+    // if (typeof document === "undefined" || !document) return;
     // Simple animation function to create confetti effect
     // const createConfetti = () => {
     //   const confettiContainer = document.getElementById("confetti-container");
