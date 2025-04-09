@@ -14,6 +14,7 @@ const SuccessScreen: React.FC<SuccessScreenProps> = ({
   price,
 }) => {
   useEffect(() => {
+    if (typeof document === "undefined") return;
     // Simple animation function to create confetti effect
     const createConfetti = () => {
       const confettiContainer = document.getElementById("confetti-container");
@@ -53,7 +54,7 @@ const SuccessScreen: React.FC<SuccessScreenProps> = ({
 
   // Handle share functionality
   const handleShare = () => {
-    if (navigator.share) {
+    if (typeof navigator !== "undefined" && navigator.share) {
       navigator
         .share({
           title: "1moment Shared!",
