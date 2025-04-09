@@ -6,6 +6,7 @@ import Button from "./Button";
 import { useRouter } from "next/navigation";
 import HandDrawnButton from "./HandDrawnButton";
 import { motion, AnimatePresence } from "framer-motion";
+import WalletButton from "./WalletButton";
 
 type StampCreatorProps = {
   backgroundColor?: string;
@@ -175,7 +176,10 @@ const StampCreator: React.FC<StampCreatorProps> = ({
       variants={containerVariants}
     >
       {/* Header - Different text based on state */}
-      <motion.header className="w-full max-w-md pt-2" variants={headerVariants}>
+      <motion.header
+        className="w-full pt-2 flex flex-col items-center justify-center gap-3"
+        variants={headerVariants}
+      >
         <div className="flex flex-col items-center">
           <motion.div
             className="text-primary-blue text-2xl font-schoolbell text-center mt-10 h-[40px]"
@@ -183,9 +187,10 @@ const StampCreator: React.FC<StampCreatorProps> = ({
           >
             {!isDrawingMode && stampImage
               ? "And mint this as NFT:)"
-              : "Let's create your stamp now"}
+              : "Design your stamp"}
           </motion.div>
         </div>
+        <WalletButton label="Connect Wallet" onClick={() => {}} />
       </motion.header>
 
       {/* Body - Conditionally render canvas or image */}
@@ -236,7 +241,10 @@ const StampCreator: React.FC<StampCreatorProps> = ({
                   animate={{ opacity: 1 }}
                   transition={{ delay: 0.3 }}
                 >
-                  just draw something here :)
+                  <p className="text-center">
+                    Be creative! This will be your verified <br /> signature
+                    across all moments :)
+                  </p>
                 </motion.div>
               )}
             </motion.div>
