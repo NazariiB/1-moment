@@ -53,7 +53,7 @@ const SuccessScreen: React.FC<SuccessScreenProps> = ({
 
   // Handle share functionality
   const handleShare = () => {
-    if (typeof navigator !== "undefined" && navigator.share) {
+    if (navigator.share) {
       navigator
         .share({
           title: "1moment Shared!",
