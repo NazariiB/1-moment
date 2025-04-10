@@ -12,6 +12,9 @@ import StampCreator from "./components/StampCreator";
 import Onboarding from "./components/Onboarding";
 import { useAccount } from "wagmi";
 import Check from "./svg/Check";
+import { callConfig } from "./utils/callConfig";
+import { oneMomentContract } from "./utils/oneMomentContracts";
+import { readContract } from '@wagmi/core';
 
 const SCHEMA_UID =
   "0x7889a09fb295b0a0c63a3d7903c4f00f7896cca4fa64d2c1313f8547390b7d39";
@@ -23,13 +26,33 @@ export default function App() {
 
   const addFrame = useAddFrame();
   const openUrl = useOpenUrl();
-  const { address } = useAccount();
+  const { status, address } = useAccount();
 
   useEffect(() => {
+    console.log("isFrameReady1: ", isFrameReady);
     if (!isFrameReady) {
       setFrameReady();
     }
   }, [setFrameReady, isFrameReady]);
+
+  useEffect(() => {
+    console.log("isFrameReady: ", isFrameReady);
+    if (!isFrameReady) return;
+    console.log("frame ready", address);
+    if (status === "connected") {
+      readContract(callConfig, {
+        abi: oneMomentContract.oneMomentContractAbi,
+        address: oneMomentContract.oneMomentAddress,
+        functionName: 'userOwnsNFT',
+        args: [address],
+      }).then((data) => {
+        console.log("data: ", data);
+        if (data) {
+          setShowOnboarding(false);
+        }
+      });
+    }
+  }, [address, isFrameReady]);
 
   const handleAddFrame = useCallback(async () => {
     const frameAdded = await addFrame();

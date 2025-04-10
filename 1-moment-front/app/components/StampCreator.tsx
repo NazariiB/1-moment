@@ -7,6 +7,11 @@ import { useRouter } from "next/navigation";
 import HandDrawnButton from "./HandDrawnButton";
 import { motion, AnimatePresence } from "framer-motion";
 import WalletButton from "./WalletButton";
+import { useConnect } from "wagmi";
+import { getAccount, writeContract } from '@wagmi/core'
+import { callConfig } from "../utils/callConfig";
+import { oneMomentContract } from "../utils/oneMomentContracts";
+import { base, mainnet } from "wagmi/chains";
 
 type StampCreatorProps = {
   backgroundColor?: string;
@@ -28,6 +33,9 @@ const StampCreator: React.FC<StampCreatorProps> = ({
     useState(false);
   const canvasRef = useRef<ReactSketchCanvasRef>(null);
   const router = useRouter();
+
+  const { connect, connectors } = useConnect()
+  const { connector } = getAccount(callConfig)
 
   // Set initialAnimationComplete to true after first render
   useEffect(() => {
@@ -73,6 +81,17 @@ const StampCreator: React.FC<StampCreatorProps> = ({
     try {
       setIsMinting(true);
       // Here you would implement the logic for minting the NFT
+
+      const result = await writeContract(callConfig, {
+        abi: oneMomentContract.oneMomentContractAbi,
+        address: oneMomentContract.oneMomentAddress,
+        functionName: 'mintNFT',
+        args: [
+          'https://maroon-eldest-tiger-794.mypinata.cloud/ipfs/QmUXbnpth8ni4DxXNcZiSuaFLQkHausvA8PEf5g2pwmKko/1.png',
+        ],
+        chainId: base.id,
+        connector: connectors[0],
+      })
 
       // Simulate a successful mint with a delay
       await new Promise((resolve) => setTimeout(resolve, 1500));
@@ -190,7 +209,7 @@ const StampCreator: React.FC<StampCreatorProps> = ({
               : "Design your stamp"}
           </motion.div>
         </div>
-        <WalletButton label="Connect Wallet" onClick={() => {}} />
+        <WalletButton label="Connect Wallet" onClick={() => connect({ connector: connectors[0] })} />
       </motion.header>
 
       {/* Body - Conditionally render canvas or image */}
