@@ -209,7 +209,10 @@ const StampCreator: React.FC<StampCreatorProps> = ({
               : "Design your stamp"}
           </motion.div>
         </div>
-        <WalletButton label="Connect Wallet" onClick={() => connect({ connector: connectors[0] })} />
+        <WalletButton label="Connect Wallet" onClick={() => {
+          connect({ connector: connectors[0] })
+        }
+          } />
       </motion.header>
 
       {/* Body - Conditionally render canvas or image */}

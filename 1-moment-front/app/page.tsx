@@ -15,6 +15,8 @@ import Check from "./svg/Check";
 import { callConfig } from "./utils/callConfig";
 import { oneMomentContract } from "./utils/oneMomentContracts";
 import { readContract } from '@wagmi/core';
+import { useConnect } from "wagmi";
+import { sdk } from '@farcaster/frame-sdk'
 
 const SCHEMA_UID =
   "0x7889a09fb295b0a0c63a3d7903c4f00f7896cca4fa64d2c1313f8547390b7d39";
@@ -27,13 +29,22 @@ export default function App() {
   const addFrame = useAddFrame();
   const openUrl = useOpenUrl();
   const { status, address } = useAccount();
+  const { connect, connectors } = useConnect()
 
   useEffect(() => {
     console.log("isFrameReady1: ", isFrameReady);
-    if (!isFrameReady) {
-      setFrameReady();
+
+    if (isFrameReady) {
+      connect({connector: connectors[0], });
     }
-  }, [setFrameReady, isFrameReady]);
+  }, [isFrameReady]);
+
+  useEffect(() => {
+    // wtf is this piece of code
+    sdk.actions.ready().then(() => {
+      setFrameReady();
+    });
+  }, []);
 
   useEffect(() => {
     console.log("isFrameReady: ", isFrameReady);
@@ -47,6 +58,8 @@ export default function App() {
         args: [address],
       }).then((data) => {
         console.log("data: ", data);
+        //  TODO delete this
+        // setShowOnboarding(false);
         if (data) {
           setShowOnboarding(false);
         }
