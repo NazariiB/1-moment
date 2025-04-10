@@ -1,13 +1,18 @@
 {
-  "accountAssociation": {},
+  "accountAssociation": {
+    "header": "eyJmaWQiOjEwNDQxMjMsInR5cGUiOiJjdXN0b2R5Iiwia2V5IjoiMHhkY2Y3YmRlNzBmNTM2NjQ2NTI1ODI4ODg4MTVlNDM2Mjg1NGMwMTA0In0",
+    "payload": "eyJkb21haW4iOiIxLW1vbWVudC1mcm9udC52ZXJjZWwuYXBwIn0",
+    "signature": ""
+  },
   "frame": {
-    "buttonTitle": "Launch undefined",
-    "splashBackgroundColor": "#fff",
-    "webhookUrl": "https://1-moment-front.vercel.app",
     "name": "1 moment",
     "version": "1",
     "iconUrl": "https://maroon-eldest-tiger-794.mypinata.cloud/ipfs/bafkreif53mwskmxphcxplacxep5ym5xspywhdn4fik4yzozarjbwlh72gy",
     "homeUrl": "https://1-moment-front.vercel.app",
-    "imageUrl": "https://maroon-eldest-tiger-794.mypinata.cloud/ipfs/bafkreif53mwskmxphcxplacxep5ym5xspywhdn4fik4yzozarjbwlh72gy"
+    "imageUrl": "https://maroon-eldest-tiger-794.mypinata.cloud/ipfs/bafkreif53mwskmxphcxplacxep5ym5xspywhdn4fik4yzozarjbwlh72gy",
+    "buttonTitle": "Launch 1 moment",
+    "splashImageUrl": "https://maroon-eldest-tiger-794.mypinata.cloud/ipfs/bafkreif53mwskmxphcxplacxep5ym5xspywhdn4fik4yzozarjbwlh72gy",
+    "splashBackgroundColor": "#fff",
+    "webhookUrl": "https://1-moment-front.vercel.app/api/webhook"
   }
 }
